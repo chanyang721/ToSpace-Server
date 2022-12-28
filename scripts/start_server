@@ -1,5 +1,9 @@
 #!/bin/bash
+# 파일 이동
 cd /home/ec2-user/node-website
+
 export NODE_ENV=production
+
 forever start app.js
+
 service httpd start

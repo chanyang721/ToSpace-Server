@@ -3,9 +3,8 @@ var port = process.env.PORT || 3000,
     fs = require('fs');
 
 var app = http.createServer(function (req, res) {
-  var req = req.url
-  if (req.indexOf('/')) {
-    res.writeHead(404, {'Content-Type': 'application/json'});
+  if (req.url.indexOf('/') !== -1) {
+    res.writeHead(200, {'Content-Type': 'application/json'});
     res.write({ message: 'Success' });
     res.end();
   }
