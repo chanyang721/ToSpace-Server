@@ -1,9 +1,21 @@
 #!/bin/bash
-# 파일 이동
+#디렉토리 권한 부여
+sudo chmod -R 777 /home/ec2-user/node-website
+
+# 깃허브에서 받은 파일로 이동
 cd /home/ec2-user/node-website
 
-export NODE_ENV=production
+echo "Stopping any existing node servers"
 
-forever start app.js
+sudo pm2 start app
 
-service httpd start
+
+#
+## 파일 이동
+#cd /home/ec2-user/node-website
+#
+#export NODE_ENV=production
+#
+#forever start app.js
+#
+#service httpd start
