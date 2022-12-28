@@ -3,6 +3,14 @@ var port = process.env.PORT || 3000,
     fs = require('fs');
 
 var app = http.createServer(function (req, res) {
+  var req = req.url
+  if (req.indexOf('/')) {
+    res.writeHead(404, {'Content-Type': 'application/json'});
+    res.write({ message: 'Success' });
+    res.end();
+  }
+
+
   if (req.url.indexOf('/img') != -1) {
     var filePath = req.url.split('/img')[1];
     fs.readFile(__dirname + '/public/img' + filePath, function (err, data) {
@@ -28,7 +36,7 @@ var app = http.createServer(function (req, res) {
         res.write(data);
       }  
       res.end();
-    });
+    })
   } else if(req.url.indexOf('/css') != -1) {
     var filePath = req.url.split('/css')[1];
     fs.readFile(__dirname + '/public/css' + filePath, function (err, data) {
@@ -55,6 +63,8 @@ var app = http.createServer(function (req, res) {
       res.end();
     });
   }
-}).listen(port, '0.0.0.0');
+}).listen(port, '0.0.0.0', () => {
+    console.log('Server is running')
+});
 
 module.exports = app;
