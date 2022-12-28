@@ -3,13 +3,6 @@ var port = process.env.PORT || 80,
     fs = require('fs');
 
 var app = http.createServer(function (req, res) {
-  console.log('url is: ', req.url)
-  if (req.url === '/healthCheck') {
-    res.writeHead(200, {'Content-Type': 'application/json'});
-    res.write({ message: 'Success' });
-    res.end();
-  }
-
 
   if (req.url.indexOf('/img') != -1) {
     var filePath = req.url.split('/img')[1];π
@@ -64,7 +57,7 @@ var app = http.createServer(function (req, res) {
     });
   }
 }).listen(port, '0.0.0.0', () => {
-    console.log('Server is running')
+    console.log('Server is running http://localhost:' + port);
 });
 
 module.exports = app;
